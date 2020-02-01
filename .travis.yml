@@ -1,0 +1,28 @@
+sudo: required
+
+services:
+  - docker
+before_install:
+  - docker-compose build
+
+deploy:
+  edge: True
+  provider: elasticbeanstalk 
+  region: "us-east-2"
+  app: "python-demo-app"
+  env: "PythonDemoApp-env"
+  bucket_name: "elasticbeanstalk-us-east-2-783208059654"
+  bucker_path: "python-demo-app"
+
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+
+  secret_access_key: 
+    secure: "$AWS_SECRET_KEY"
+
+
+
+
+
+
